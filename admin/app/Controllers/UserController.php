@@ -10,14 +10,16 @@ if (isset($_POST['user_edit'], $_GET['id']) && exist_user($_GET['id'])) {
     $password = (strlen(trim($_POST['password'])) >= 6) ? md5(trim($_POST['password'])) : user($id, 'password');
 
     $data = array(
-        'name'     => trim($_POST['name']),
-        'family'   => trim($_POST['family']),
-        'gender'   => trim($_POST['gender']),
-        'email'    => strtolower(trim($_POST['email'])),
-        'mobile'   => trim($_POST['mobile']),
-        'role'     => trim($_POST['role']),
-        'address'  => trim($_POST['address']),
-        'password' => $password,
+        'name'       => trim($_POST['name']),
+        'family'     => trim($_POST['family']),
+        'gender'     => trim($_POST['gender']),
+        'email'      => strtolower(trim($_POST['email'])),
+        'mobile'     => trim($_POST['mobile']),
+        'role'       => trim($_POST['role']),
+        'address'    => trim($_POST['address']),
+        'status'     => trim($_POST['status']),
+        'password'   => $password,
+        'updated_at' => date('y-m-d H:i:s'),
     );
 
     if (user_update($id, $data)) {

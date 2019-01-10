@@ -90,11 +90,21 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-8">
+                                <div class="col-md-4">
                                     <div class="form-group ">
                                         <label for="address">Address</label>
                                         <input type="text" name="address" class="form-control" id="address"
                                                value="<?=user($id, 'address');?>">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group ">
+                                        <label for="status">Status</label>
+                                        <select class="form-control" name="status" id="status" required>
+                                            <option value="1" <?php echo (user($id,'status') == '1') ? 'selected' : ''; ?>>Active</option>
+                                            <option value="0" <?php echo (user($id,'status') == '0') ? 'selected' : ''; ?>>Disable</option>
+                                        </select>
                                     </div>
                                 </div>
 

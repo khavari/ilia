@@ -60,7 +60,7 @@ function exist_user($id)
 function user_update($id, $data)
 {
     $conn = connection();
-    $sql = "UPDATE users SET role = ?,email = ?,password = ?,name = ?,family =?,gender = ?,mobile = ?,address = ? WHERE id = ?";
+    $sql = "UPDATE users SET role = ?,email = ?,password = ?,name = ?,family =?,gender = ?,mobile = ?,address = ?,status = ?,updated_at = ? WHERE id = ?";
     $query = $conn->prepare($sql);
     $result = $query->execute([
         $data['role'],
@@ -71,6 +71,8 @@ function user_update($id, $data)
         $data['gender'],
         $data['mobile'],
         $data['address'],
+        $data['status'],
+        $data['updated_at'],
         $id,
     ]);
 
