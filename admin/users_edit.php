@@ -1,4 +1,5 @@
 <?php require 'app/core.php'; ?>
+<?php (! is_admin()) ? header('Location: login.php') : null; ?>
 <?php $id = (isset($_GET['id']) && exist_user($_GET['id'])) ? $_GET['id'] : header('Location: users.php'); ?>
 <!DOCTYPE html>
 <html>

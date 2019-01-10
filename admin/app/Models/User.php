@@ -125,3 +125,78 @@ function user_delete($id)
 
     return $result;
 }
+
+
+/**
+ * Find user via id and return the specified field
+ *
+ * @param $id
+ * @param $field
+ *
+ * @return int,string,bool
+ */
+
+/**
+ * Create user session
+ *
+ * @param $data
+ *
+ * @return bool
+ */
+function do_login($data)
+{
+    $email = $data['email'];
+    $password = md5($data['password']);
+    $conn = connection();
+    $query = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+    $query->execute([$email, $password]);
+    $user = $query->fetch();
+    if ($user) {
+        $_SESSION['user'] = array(
+            'id'         => $user['id'],
+            'name'       => $user['name'],
+            'family'     => $user['family'],
+            'role'       => $user['role'],
+            'email'      => $user['email'],
+            'gender'     => $user['gender'],
+            'mobile'     => $user['mobile'],
+            'status'     => $user['status'],
+            'created_at' => $user['created_at'],
+            'updated_at' => $user['updated_at'],
+        );
+
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Return user date from session
+ *
+ * @param $field
+ *
+ * @return string
+ */
+function auth_user($field)
+{
+    return $_SESSION['user'][$field] ?? '';
+}
+
+/**
+ * Check the user logged in or no
+ *
+ * @return bool
+ */
+function is_admin()
+{
+    if (isset($_SESSION['user'])) {
+        if ($_SESSION['user']['role'] == 'admin') {
+            return true;
+        }
+
+        return false;
+    }
+
+    return false;
+}

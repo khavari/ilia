@@ -1,4 +1,5 @@
 <?php require 'app/core.php'; ?>
+<?php (! is_admin()) ? header('Location: login.php') : null; ?>
 <!DOCTYPE html>
 <html>
 <?php include_once 'master/head.php'; ?>

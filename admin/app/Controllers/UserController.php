@@ -77,3 +77,28 @@ if (isset($_POST['user_delete'], $_POST['user_id']) && exist_user($_POST['user_i
     }
 
 }
+
+
+/**
+ * Submit login form
+ * /admin/login.php
+ */
+if (isset($_POST['user_login'])) {
+    $data = array(
+        'email'    => strtolower(trim($_POST['email'])),
+        'password' => trim($_POST['password']),
+    );
+
+    if (do_login($data)) {
+        header('Location: index.php');
+    } else {
+        set_message("error", "The email or password is incorrect");
+    }
+
+}
+
+
+if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
+    unset($_SESSION['user']);
+    header('Location: login.php');
+}
