@@ -16,7 +16,7 @@
                 <div class="col-xs-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Edit user: name family</h3>
+                            <h3 class="box-title">Edit user: <?=user($id, 'name');?> <?=user($id, 'family');?></h3>
                             <div class="box-tools"></div>
                         </div>
                         <form action="<?=current_url();?>" method="post">

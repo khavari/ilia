@@ -78,3 +78,32 @@ function user_update($id, $data)
 
     return $result;
 }
+
+
+/**
+ * Create the specified user.
+ *
+ * @param $id
+ * @param $data
+ *
+ * @return bool
+ */
+function user_create($data)
+{
+    $conn = connection();
+    $sql = "INSERT INTO users(role, email, password, name, family, gender, mobile, address, status, created_at) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    $query = $conn->prepare($sql);
+    $result = $query->execute([
+        $data['role'],
+        $data['email'],
+        $data['password'],
+        $data['name'],
+        $data['family'],
+        $data['gender'],
+        $data['mobile'],
+        $data['address'],
+        $data['status'],
+        $data['created_at'],
+    ]);
+    return $result;
+}

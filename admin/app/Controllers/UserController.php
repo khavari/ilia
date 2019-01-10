@@ -30,3 +30,32 @@ if (isset($_POST['user_edit'], $_GET['id']) && exist_user($_GET['id'])) {
     }
 
 }
+
+/**
+ * Submit user create form.
+ * /admin/user_create.php
+ * Submit name: user_create
+ */
+if (isset($_POST['user_create'])) {
+
+    $data = array(
+        'name'       => trim($_POST['name']),
+        'family'     => trim($_POST['family']),
+        'gender'     => trim($_POST['gender']),
+        'email'      => strtolower(trim($_POST['email'])),
+        'mobile'     => trim($_POST['mobile']),
+        'role'       => trim($_POST['role']),
+        'address'    => trim($_POST['address']),
+        'status'     => trim($_POST['status']),
+        'password'   => md5(trim($_POST['password'])),
+        'created_at' => date('y-m-d H:i:s'),
+    );
+
+    if (user_create($data)) {
+        set_message("success", "The create operation was successfully.");
+        header('Location: users.php');
+    } else {
+        set_message("error", "The create operation was failed.");
+    }
+
+}

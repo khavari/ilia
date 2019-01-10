@@ -105,3 +105,8 @@ function is_updated($updated_at)
 
     return false;
 }
+
+function old($input)
+{
+    return $_REQUEST[$input] ?? null;
+}
