@@ -29,7 +29,7 @@
                                     <th>Action</th>
                                 </tr>
                                 <?php foreach (get_users() as $user): ?>
-                                    <tr>
+                                    <tr class="<?= (is_updated($user['updated_at'])) ? 'updated' : ''; ?>">
                                         <td><?=$user['id'];?></td>
                                         <td><?=$user['name'];?> <?=$user['family'];?></td>
                                         <td><?=$user['email'];?></td>

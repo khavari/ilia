@@ -87,3 +87,21 @@ function has_message($type)
 
     return false;
 }
+
+/**
+ * Check the specified records is updated or no.
+ *
+ * @param $updated_at
+ *
+ * @return bool
+ */
+function is_updated($updated_at)
+{
+    $now = time() - 60;
+    $updated_at = strtotime($updated_at);
+    if ($updated_at > $now) {
+        return true;
+    }
+
+    return false;
+}
