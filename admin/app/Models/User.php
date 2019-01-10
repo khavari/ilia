@@ -81,9 +81,8 @@ function user_update($id, $data)
 
 
 /**
- * Create the specified user.
+ * Create new user.
  *
- * @param $id
  * @param $data
  *
  * @return bool
@@ -105,5 +104,24 @@ function user_create($data)
         $data['status'],
         $data['created_at'],
     ]);
+
+    return $result;
+}
+
+
+/**
+ * Delete the specified user
+ *
+ * @param $id
+ *
+ * @return bool
+ */
+function user_delete($id)
+{
+    $conn = connection();
+    $sql = "DELETE FROM `users` WHERE id = ? LIMIT 1";
+    $query = $conn->prepare($sql);
+    $result = $query->execute([$id]);
+
     return $result;
 }

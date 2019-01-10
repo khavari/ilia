@@ -59,3 +59,21 @@ if (isset($_POST['user_create'])) {
     }
 
 }
+
+
+/**
+ * Submit user delete form.
+ * /admin/users.php
+ * Submit name: user_delete
+ */
+if (isset($_POST['user_delete'], $_POST['user_id']) && exist_user($_POST['user_id'])) {
+
+    $id = $_POST['user_id'];
+    if (user_delete($id)) {
+        set_message("success", "The delete operation was successfully.");
+        header('Location: users.php');
+    } else {
+        set_message("error", "The delete operation was failed.");
+    }
+
+}

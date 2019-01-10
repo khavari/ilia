@@ -22,3 +22,15 @@
       })
     </script>
 <?php endif; ?>
+<script>
+  $(document).ready(function () {
+    $('form.delete').click(function (e) {
+      var msg = "Are you sure you want to permanently delete this?";
+      if (!confirm(msg)) {
+        e.preventDefault()
+        return false
+      }
+      return true
+    })
+  })
+</script>
