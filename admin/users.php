@@ -42,11 +42,17 @@
                                             <td><i class="fa fa-circle-o text-red"></i></td>
                                         <?php endif; ?>
                                         <td>
+
                                             <a href="users_edit.php?id=<?=$user['id'];?>" class="btn btn-success btn-xs">Edit</a>
                                             <a href="users_view.php?id=<?=$user['id'];?>" class="btn btn-primary btn-xs">View</a>
                                             <form action="<?=current_url();?>" class="delete" method="post" style="display: inline-block">
                                                 <input type="hidden" name="user_id" value="<?=$user['id'];?>">
                                                 <button type="submit" name="user_delete" class="btn btn-danger btn-xs">Delete</button>
+                                            </form>
+
+                                            <form action="<?=current_url();?>" method="post" style="display: inline-block">
+                                                <input type="hidden" name="user_id" value="<?=$user['id'];?>">
+                                                <button type="submit" name="send_sms" class="btn btn-danger btn-xs">SMS</button>
                                             </form>
                                         </td>
                                     </tr>

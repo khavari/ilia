@@ -102,3 +102,15 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     unset($_SESSION['user']);
     header('Location: login.php');
 }
+
+
+if (isset($_POST['send_sms'], $_POST['user_id']) && exist_user($_POST['user_id'])) {
+
+    $id = $_POST['user_id'];
+    $mobile = user($id, "mobile");
+
+    $message = urlencode("Hi \r\n username:ali");
+    $token = SMS_TOKEN;
+    file_get_contents("https://api.kavenegar.com/v1/$token/sms/send.json?receptor=$mobile&message=$message");
+    set_message("success", "Success");
+}
